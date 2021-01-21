@@ -1,0 +1,485 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+label {
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: #464646;
+}
+
+input {
+  font: inherit;
+  border: 1px solid #ccc;
+  padding: 0.4rem 0.2rem;
+  color: #383838;
+}
+
+input:focus {
+  outline: none;
+  background: #fff1c4;
+}
+
+.row {
+  display: flex;
+}
+
+.modal-row {
+  display: flex;
+  justify-content: center;
+}
+#main-header {
+  z-index: 1;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #c4bfc4;
+}
+
+#main-header h1 {
+  color: white;
+  margin: 0;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 1rem 0;
+  height: 100px;
+  transition: height 0.5s;
+  cursor: pointer;
+}
+
+section {
+  margin: 0 auto;
+  width: 40rem;
+  max-width: 50%;
+  box-shadow: 0px 0px 7px 5px rgba(39, 24, 177, 0.1),
+    0px 0px 7px 5px rgba(39, 24, 177, 0.1);
+}
+
+section ul {
+  padding: 1rem;
+  height: 78vh;
+  overflow-y: scroll;
+}
+
+section > h2 {
+  color: white;
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  background: #ff0062;
+  color: white;
+  border: 1px solid #ff0062;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  width: 100px;
+}
+
+button.alt {
+  background: white;
+  color: #ff0062;
+}
+
+button:focus {
+  outline: none;
+}
+
+p {
+  word-wrap: break-word;
+}
+button:hover,
+button:active {
+  background: #ff2579;
+  border-color: #ff2579;
+  color: white;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  padding: 0.5rem;
+  background: rgb(175, 171, 171);
+}
+
+#active-tasks {
+  border: 1px solid #870099;
+}
+
+#active-tasks > header {
+  background: #870099;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#active-tasks header h2 {
+  color: white;
+  margin: 0;
+}
+
+#finished-tasks {
+  border: 1px solid #535353;
+}
+
+#finished-tasks > header {
+  background: #535353;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#finished-tasks header h2 {
+  color: white;
+  margin: 0;
+}
+
+.droppable {
+  background-color: brown;
+}
+
+#backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 10;
+  pointer-events: none;
+  display: none;
+}
+.modal {
+  position: fixed;
+  z-index: 100;
+  background: rgb(201, 195, 195);
+  border-radius: 10px;
+  min-height: 52%;
+  min-width: 30%;
+  top: 20vh;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  display: none;
+}
+
+#addTaskModal {
+  border: none;
+  width: 200px;
+  border-radius: 30px;
+  background-color: rgb(111, 114, 111);
+  box-shadow: 0px 0px 7px 5px rgba(39, 24, 177, 0.1),
+    0px 0px 7px 5px rgba(39, 24, 177, 0.1);
+  transition: color 150ms ease-in-out, box-shadow 200ms ease-in-out;
+}
+#addTaskModal:hover {
+  border: 0.5px solid rgb(78, 155, 78);
+  color: rgb(75, 74, 74);
+  width: 200px;
+  border-radius: 30px;
+  background-color: rgb(54, 201, 54);
+  box-shadow: 0px 0px 10px 5px rgba(31, 8, 230, 0.1),
+    0px 0px 10px 5px rgba(39, 24, 177, 0.1),
+    0px 0px 10px 5px rgba(39, 24, 177, 0.1);
+}
+
+.del-modal {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  position: fixed;
+  z-index: 100;
+  background: white;
+  border-radius: 10px;
+  height: 20vh;
+  min-width: 20%;
+  top: 30vh;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  display: none;
+}
+.del-modal button {
+  border-radius: 5px;
+  margin-right: 2px;
+}
+
+.confirmTaskDel {
+  background-color: green;
+  border: none;
+  width: 100px;
+}
+
+.confirmTaskDel:hover {
+  background-color: rgb(53, 163, 53);
+}
+.visible {
+  display: block;
+  animation: fade-slide-in 0.3s ease-out forwards;
+}
+
+.modal .modal__content {
+  padding: 1rem;
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__actions {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal .modal__content #title {
+  margin: 0;
+  padding: 0.5rem;
+
+  border: 1px solid grey;
+  background: transparent;
+  color: black;
+  border-radius: 10px 10px;
+}
+
+#editTask {
+  min-height: 100px;
+  margin-left: 20px;
+  font-size: 1.5rem;
+  width: 40rem;
+  max-width: 90%;
+  display: block;
+  margin-bottom: 10px;
+  border: none;
+  resize: none;
+}
+.edit {
+  border-color: rgb(14, 206, 78);
+  background-color: rgb(14, 206, 78);
+  position: absolute;
+  right: 32px;
+  box-shadow: 0px 0px 7px 5px rgba(39, 24, 177, 0.2);
+}
+.edit:hover {
+  border-color: rgb(14, 206, 78);
+  background-color: rgb(73, 219, 122);
+  box-shadow: 0px 0px 7px 5px rgba(39, 24, 177, 0.2),
+    0px 0px 5px 4px rgba(12, 9, 46, 0.2);
+}
+
+.switch {
+  box-shadow: 0px 0px 5px 4px rgba(12, 9, 46, 0.2);
+  margin-left: 10px;
+}
+.switch:hover {
+  box-shadow: 0px 0px 7px 5px rgba(39, 24, 177, 0.2),
+    0px 0px 5px 4px rgba(12, 9, 46, 0.2);
+}
+.delete {
+  margin-left: 20px;
+  box-shadow: 0px 0px 5px 4px rgba(12, 9, 46, 0.2);
+}
+.delete:hover {
+  box-shadow: 0px 0px 7px 5px rgba(39, 24, 177, 0.2),
+    0px 0px 5px 4px rgba(12, 9, 46, 0.2);
+}
+
+.remove-complete-btnAct,
+.remove-complete-btnFin {
+  border: 0;
+  background: grey;
+  color: #fff;
+  width: 10rem;
+  cursor: pointer;
+  transition: color 150ms ease-in-out;
+  outline: none;
+}
+.remove-complete-btnFin:hover,
+.remove-complete-btnAct:hover {
+  color: #272727;
+}
+.remove-complete-btn:active {
+  color: #ff652f;
+}
+
+.custom-checkbox {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.5em;
+  cursor: pointer;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  transform: scale(1);
+  transition: transform 200ms ease-in-out;
+}
+.check-mark {
+  position: absolute;
+  bottom: 2px;
+  left: 1px;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+  z-index: 2;
+}
+
+[type="checkbox"]:checked + label .check-mark,
+[type="checkbox"]:checked + label {
+  opacity: 0.8;
+}
+
+li:hover .custom-checkbox {
+  transform: scale(1.6);
+  color: #747474;
+}
+li:active .custom-checkbox {
+  transform: scale(1);
+  color: #ff652f;
+}
+[type="checkbox"]:checked + label .custom-checkbox {
+  transform: scale(1);
+  color: #ff652f;
+  opacity: 0.8;
+}
+
+li input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+li {
+  position: relative;
+}
+li label {
+  position: relative;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 150ms ease-in-out;
+  transition: color 150ms ease-in-out;
+}
+
+li label:hover {
+  color: #747474;
+}
+
+.addTask {
+  background-color: green;
+  border: none;
+  border-radius: 10px;
+}
+.cancelAdd {
+  background-color: rgb(150, 7, 54);
+  border: none;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+#textarea {
+  padding: 0.5rem;
+  font-size: 1.3rem;
+}
+#textarea:focus {
+  outline: none;
+}
+
+.taskArea {
+  background-color: whitesmoke;
+  width: 100%;
+}
+textarea {
+  font: inherit;
+}
+
+@keyframes fade-slide-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 782px) {
+  .edit {
+    position: static;
+  }
+  .switch {
+    margin-left: 0;
+  }
+}
+
+.invisible {
+  height: 0px;
+  opacity: 0;
+  /* width: 200px;*/
+  width: 80rem;
+  max-width: 90%;
+  position: absolute;
+  transition: height 3s, opacity 1s;
+}
+.visibleDiv {
+  position: absolute;
+  z-index: 10;
+  color: white;
+  height: 150px;
+  opacity: 1;
+  width: 80rem;
+  max-width: 90%;
+  background-color: transparent;
+
+  transition: height 3s, opacity 5s;
+}
+
+.liVisible {
+  height: 270px;
+  transition: height 0.5s;
+}
+.fas {
+  font-size: 1.5em;
+  color: rgb(58, 57, 57);
+
+}
+#icon{
+  position: absolute;
+  right: 10px;
+}
+ @media (max-width: 946px) {
+  .row {
+    flex-direction: column;
+  }
+  section {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 946px) {
+.fas{
+font-size: 0.875em;
+}
+}
