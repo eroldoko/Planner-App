@@ -27,7 +27,7 @@ export class AddTask {
 		this.backdrop.style.display = 'none';
 		this.modal.classList.remove('visible');
 	}
-	///creating of new task
+	//creating of new task
 	createTask() {
 		const taskTitle = this.modal.querySelector('#title');
 		const taskText = this.modal.querySelector('#textarea');
