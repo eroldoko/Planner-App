@@ -12,7 +12,7 @@ module.exports = {
     publicPath: 'assets/scripts/'
   }, 
   devServer: {
-    contentBase: './'
+    contentBase: './dist'
   },
   devtool: "cheap-module-eval-source-map",
   plugins: [
