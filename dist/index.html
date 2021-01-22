@@ -1,85 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Planner App</title>
-    <link rel="stylesheet" href="assets/styles/app.css" />
-    <script
-      src="https://kit.fontawesome.com/558986531c.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="assets/scripts/index.js" defer type = "module"></script>
-  </head>
-  <body>
-    <div id="backdrop"></div>
-    <div class="modal-row">
-      <div class="modal" id="add-modal">
-        <div class="modal__content">
-          <label for="title">Task Title</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            autofocus
-            placeholder="Enter Task Title..."
-          /><br />
-          <label for="textarea">To Do</label>
-          <textarea
-            name="textarea"
-            id="textarea"
-            cols="30"
-            rows="8"
-            placeholder="Task Text..."
-          ></textarea>
-        </div>
-        <div class="modal__actions">
-          <button class="cancelAdd">Cancel</button>
-          <button class="addTask">Add</button>
-        </div>
-      </div>
-    </div>
-    <div class="modal-row">
-      <div class="del-modal card" id="del-modal">
-        <div>
-          <p>Are You sure you want to delete the selected task(s)?</p>
-        </div>
-        <div class="modal__actions">
-          <button class="cancelTaskDel">Cancel</button>
-          <button class="confirmTaskDel">Yes</button>
-        </div>
-      </div>
-    </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Planner App</title>
+		<link rel="stylesheet" href="assets/styles/app.css" />
+		<script src="https://kit.fontawesome.com/558986531c.js" crossorigin="anonymous"></script>
+		<script src="assets/scripts/index.js" defer type="module"></script>
+	</head>
+	<body>
+		<div id="backdrop"></div>
+		<div class="modal-row">
+			<div class="modal" id="add-modal">
+				<div class="modal__content">
+					<label for="title">Task Title</label>
+					<input type="text" name="title" id="title" autofocus placeholder="Enter Task Title..." /><br />
+					<label for="textarea">To Do</label>
+					<textarea name="textarea" id="textarea" cols="30" rows="8" placeholder="Task Text..."></textarea>
+				</div>
+				<div class="modal__actions">
+					<button class="cancelAdd">Cancel</button>
+					<button class="addTask">Add</button>
+				</div>
+			</div>
+		</div>
+		<div class="modal-row">
+			<div class="del-modal card" id="del-modal">
+				<div>
+					<p>Are You sure you want to delete the selected task(s)?</p>
+				</div>
+				<div class="modal__actions">
+					<button class="cancelTaskDel">Cancel</button>
+					<button class="confirmTaskDel">Yes</button>
+				</div>
+			</div>
+		</div>
 
-    <header id="main-header">
-      <h1><button id="addTaskModal">Add Task</button></h1>
-    </header>
-    <div class="row">
-      <section id="active-tasks">
-        <header>
-          <h2>Active</h2>
-          <button class="remove-complete-btnAct">Clear Complete</button>
-        </header>
-        <ul></ul>
-      </section>
-      <section id="finished-tasks">
-        <header>
-          <h2>Finished</h2>
-          <button class="remove-complete-btnFin">Clear Complete</button>
-        </header>
-        <ul></ul>
-      </section>
-    </div>
+		<header id="main-header">
+			<h1><button id="addTaskModal">Add Task</button></h1>
+		</header>
+		<div class="row">
+			<section id="active-tasks">
+				<header>
+					<h2>Active</h2>
+					<button class="remove-complete-btnAct">Clear Complete</button>
+				</header>
+				<ul></ul>
+			</section>
+			<section id="finished-tasks">
+				<header>
+					<h2>Finished</h2>
+					<button class="remove-complete-btnFin">Clear Complete</button>
+				</header>
+				<ul></ul>
+			</section>
+		</div>
 
-    <footer style="position: relative"></footer>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/8.2.3/firebase-app.js"></script>
+		<footer style="position: relative"></footer>
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="/__/firebase/8.2.3/firebase-app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
+		<!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
-  </body>
+		<!-- Initialize Firebase -->
+		<script src="/__/firebase/init.js"></script>
+	</body>
 </html>
